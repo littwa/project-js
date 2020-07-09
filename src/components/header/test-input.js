@@ -5,11 +5,12 @@ const apiService = new ApiService()
 
 // находим тест инпут 
 const form = document.querySelector('#input')
-// console.log(input);
+// console.log(form);
 
 // вешаю слушетеля
 // form.addEventListener('input', searchFilms)
 
+  //test
 
 // метод отвечает за поиск  по названию apiService.getMovie
 // ф-я ищет запрошенные фильмы  
