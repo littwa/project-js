@@ -1,35 +1,11 @@
-@import './fonts.css';
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-/* Медиазапросы Медиазапросы Медиазапросы Медиазапросы Медиазапросы  */
-
- 
-
-  /* Медиазапросы Медиазапросы Медиазапросы Медиазапросы Медиазапросы  */
-
 
   /* list-film made Dima */
 
   /* -----main-------*/
   .main-section {
+    padding-top: 70px;
     margin: 0 auto;
-    padding: 0;
+    /* padding: 0; */
     /* width: 320px; */
   }
 /* --------li -------*/
@@ -40,23 +16,24 @@ body {
     align-items: center;
   }
 
-  .js-menu__item{
+  .menu__item{
    padding: 0;
    list-style: none;
-   width: 280px;
-   margin-bottom: 20px;
+   width: 277px;
+   height: 475px ;
+   margin-bottom: 22px;
   }
 
   .card {
-    margin: 0;
-    padding: 0;
-    width: 280px;
-        }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
 
   .js-menu__item img {
     border-radius: 2%;
     width: 100%;
-    height: 100%;
+    height: 410px;
     margin-bottom: 6px;
   }
 
@@ -105,20 +82,36 @@ body {
   }
 
 
-
+ 
+  @media (min-width: 368px){
+    .main-section {
+      width: 368px;
+  }
+  }
   @media (min-width: 768px) {
     .main-section {
-      width: 768px;
+        width: 768px;
     }
-    .container_cart-films {
-      padding: 0;
+    /* .menu__item {
+      margin-right: 10px;
+    } */
+    .container_cart-films{
+      width: 587px;
+      margin: 0 auto;
       display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: space-between;
     }
+   
     .container{width: 620px;}
   }
 
   @media (min-width: 1024px) {
-    .container{width: 876px;}
+    .main-section {
+      width: 1024px;
+  }
+    .container_cart-films{ 
+      width: 900px;
+    }
   }
