@@ -1,0 +1,117 @@
+
+  /* list-film made Dima */
+
+  /* -----main-------*/
+  .main-section {
+    padding-top: 70px;
+    margin: 0 auto;
+    /* padding: 0; */
+    /* width: 320px; */
+  }
+/* --------li -------*/
+  .container_cart-films {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu__item{
+   padding: 0;
+   list-style: none;
+   width: 277px;
+   height: 475px ;
+   margin-bottom: 22px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+
+  .js-menu__item img {
+    border-radius: 2%;
+    width: 100%;
+    height: 410px;
+    margin-bottom: 6px;
+  }
+
+  .card__content {
+    font-family: Roboto;
+    line-height: 16px;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .cart__info {
+    height: 27px;
+    color: #ff6b09;
+    display: flex;
+    align-items: center;
+  }
+  
+  .card__title {
+    margin: 0;
+  }
+  .genre-list {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: left;
+    line-height: 16px
+  }
+  .genre-list__item {
+    margin-right: 5px;
+  }
+
+  .card-year {
+    padding: 0 2px;
+    border-left:2px solid #ff6b09 ;
+  }
+
+  .card-vote {
+    
+    padding: 2px 6px;
+    border-radius: 20%;
+    background-color: #ff6b09;
+    color: #ffffff;
+  }
+  /*----to do--hide-----*/
+  .hide {
+    display: none;
+  }
+
+
+ 
+  @media (min-width: 368px){
+    .main-section {
+      width: 368px;
+  }
+  }
+  @media (min-width: 768px) {
+    .main-section {
+        width: 768px;
+    }
+    /* .menu__item {
+      margin-right: 10px;
+    } */
+    .container_cart-films{
+      width: 620px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+   
+    .container{width: 620px;}
+  }
+
+  @media (min-width: 1024px) {
+    .main-section {
+      width: 1024px;
+  }
+    .container_cart-films{ 
+      width: 877px;
+    }
+  }

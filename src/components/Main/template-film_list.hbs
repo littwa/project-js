@@ -1,0 +1,20 @@
+
+<li class="js-menu__item menu__item"
+        data-id="{{id}}">
+        <img
+            src="https://image.tmdb.org/t/p/w500/{{poster_path}}"
+            alt="{{title}}"
+            class="card__image"/>
+        <div class="card__content">
+            <h3 class="card__title">{{title}}</h2>
+            <div class="cart__info">
+            <ul class="genre-list">
+                {{#each genre_ids}}
+                    <li class="genre-list__item">{{this}}</li>
+                {{/each}}
+            </ul>
+            <span class="card-year">{{release_date}}</span>
+            <span class="card-vote hide">{{vote_average}}</span>
+            </div>
+        </div>
+</li>
