@@ -7,20 +7,81 @@
     <title>Project-js</title>
   </head>
   <body>
-<header >
-   <!-- Здесь разметка по хедера -->
-</header>
-<main >
-  <div>
-    <!-- Здесь динамическая разметка карточек с фильмами  -->
-  </div>
-  <div>
-    <!-- Здесь динамическая разметка навигации по страницам  -->
-  </div>
+    <header class="header-wrapper">
+      <!-- Здесь разметка по хедера -->
+      <div class="container header">
+        <div class="header-first-line">
+          <div class="header-logo">
+            <a href="#" class="header-logo-link js-logo">
+              <svg class="header-logo-icon icon-film">
+                <use href="images/icons/symbol-defs.svg#film"></use>
+              </svg>
+              <p class="header-logo-text">Filmoteka</p>
+            </a>
+          </div>
+          <nav class="header-nav">
+            <ul class="header-nav-list">
+              <li class="nav-item">
+                <a class="nav-link js-home" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-library" href="#">My library</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
-</main>
-<footer >
-<!-- Здесь разметка по футера -->
-</footer>
+        <div class="header-input">
+          <input
+            type="text"
+            name="search"
+            class="header-search"
+            id="search"
+            placeholder="Поиск фильмов"
+          />
+        </div>
+        <div class="header-warning">
+          <p class="header-warning-text">
+            Search result not successful. Enter the correct movie name and try
+            again.
+          </p>
+        </div>
+
+        <div class="header-btn">
+          <!-- вставить здесь 2 кнопки  -->
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div>
+        <!-- Здесь динамическая разметка карточек с фильмами  -->
+      </div>
+      <div>
+        <!-- Здесь динамическая разметка навигации по страницам  -->
+      </div>
+    </main>
+
+    <footer class="footer-wraper">
+      <!-- Здесь разметка по футера -->
+      <div class="footer container">
+        <div class="footer-content">
+          <p class="footer-text">
+            <svg class="footer-icon icon-copyright">
+              <use href="images/icons/symbol-defs.svg#copyright"></use>
+            </svg>
+            2020 | All Rights Reserved
+            <span class="footer-mobile-hidden">|</span>
+          </p>
+          <p class="footer-text">
+            Developed with
+            <svg class="footer-icon icon-heart">
+              <use href="images/icons/symbol-defs.svg#favorite-heart"></use>
+            </svg>
+            by <a class="footer-contact-link" href="#">GoIT Students</a>
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
