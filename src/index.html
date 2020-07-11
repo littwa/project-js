@@ -12,7 +12,7 @@
       <div class="container header">
         <div class="header-first-line">
           <div class="header-logo">
-            <a href="#" class="header-logo-link">
+            <a href="#" class="header-logo-link js-logo">
               <svg class="header-logo-icon icon-film">
                 <use href="images/icons/symbol-defs.svg#film"></use>
               </svg>
@@ -21,9 +21,11 @@
           </div>
           <nav class="header-nav">
             <ul class="header-nav-list">
-              <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
               <li class="nav-item">
-                <a class="nav-link" href="#">My library</a>
+                <a class="nav-link js-home" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-library" href="#">My library</a>
               </li>
             </ul>
           </nav>
@@ -50,6 +52,7 @@
         </div>
       </div>
     </header>
+
     <main>
       <div>
         <!-- Здесь динамическая разметка карточек с фильмами  -->
