@@ -11,7 +11,7 @@ const refs = {
   warning: document.querySelector('.header-warning'),
 };
 
-console.log(refs.inputValue.value);
+console.log('111', refs.inputValue.value);
 
 document.addEventListener('DOMContentLoaded', homeHoverActive);
 refs.library.addEventListener('click', showLibrary);

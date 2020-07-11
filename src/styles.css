@@ -18,6 +18,13 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* PAG TEST PAG TEST PAG TEST PAG TEST PAG TEST TEST PAG TEST PAG TEST PAG TEST PAG TEST PAG TEST */
+.main-pagination-navigatin {
+  width: max-content;
+  margin: 0 auto;
+}
+/* PAG TEST PAG TEST PAG TEST PAG TEST PAG TEST TEST PAG TEST PAG TEST PAG TEST PAG TEST PAG TEST */
+
 /* Медиазапросы Медиазапросы Медиазапросы Медиазапросы Медиазапросы  */
 .container {
   width: 280px;
