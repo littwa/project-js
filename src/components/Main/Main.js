@@ -1,120 +1,161 @@
 import './Main.css';
 import './style-list.css';
-import fn from '../test/test.js';
+import { OpenDetailModal } from '../Detail/Detail.js';
 import divTempalte from './template-film_list.hbs';
-let n = document.querySelector('header');
-let d = document.createElement('div');
-d.classList.add('d');
-n.insertAdjacentElement('beforeend', d);
-d.insertAdjacentText('afterbegin', 'Компонент "Main"|');
+import amountFilimDevice from './AmountFilimDevice';
+import Handlebars from 'handlebars/runtime';
+import arrGenres from './arrGenres.js';
+import {
+  pagination,
+  containerPag,
+} from '../NavigationPagination/NavigationPagination.js';
+const containerFilms = document.querySelector('.main-container_cart-films');
 
-d.insertAdjacentText('beforeend', fn());
+Handlebars.registerHelper('loud', function (date) {
+  if (date) {
+    return date.slice(0, 4);
+  } else {
+    return 'XXXX';
+  }
+});
+Handlebars.registerHelper('genres', function (genresId) {
+  return arrGenres.reduce((ac, el) => {
+    el.id === genresId ? (ac = el.name + ',') : genresId;
+    return ac;
+  }, '');
+});
 
-// localStorage localStorage localStorage localStorage localStorage localStorage
-
-let arrFilmsWatched = [
-  { q: 1, w: 2, e: 3 },
-  { q: 4, w: 5, e: 6 },
-  { q: 7, w: 8, e: 9 },
-];
-
-localStorage.setItem('watched', JSON.stringify(arrFilmsWatched));
-
-arrFilmsWatched = JSON.parse(localStorage.getItem('watched'));
-
-let selectedFilm = { q: 10, w: 11, e: 12 };
-
-arrFilmsWatched.push(selectedFilm);
-
-// console.log(arrFilmsWatched);
-
-localStorage.setItem('watched', JSON.stringify(arrFilmsWatched));
-
-export { arrFilmsWatched };
-
-// localStorage localStorage localStorage localStorage localStorage localStorage
-
-//--------------------------------------------------------------------------------------------------------------------------
-
-//fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api
-const containerFilms = document.querySelector('.container_cart-films');
+//fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api
 
 let renderAPI = {
   baseUrlForImg: 'http://image.tmdb.org/t/p/',
   baseUrl: 'https://api.themoviedb.org/3/',
   allFilms: 'discover/',
-  backdrop_sizes: ['w300', 'w780', 'w1280', 'original'],
+  searchMovie: 'search/movie',
+  backdropSizes: ['w300', 'w780', 'w1280', 'original'],
   apiKey: '?api_key=62d44aec954e70e62cd2b71881d93db4',
+  amountFilmDeviceNumber: amountFilimDevice(),
+  renderedFilmsOnPage: [],
+  clickedPageObject: {},
+  dataFilmsFlag: 1,
+  activePage: 1,
+  totalPage: 1,
 
-  infoAllFilm(pageNumber = 1) {
-    // console.log(
-    //   `${this.baseUrl}${this.allFilms}movie${this.apiKey}&page=${pageNumber}`,
-    // );
-    fetch(
-      `${this.baseUrl}${this.allFilms}movie${this.apiKey}&page=${pageNumber}`,
-    )
-      .then(response => response.json())
-      .then(data => {
-        console.log(data.results);
-        this.createCartFilm(data.results);
-      })
-      .catch(error => console.error(error));
+  infoAllFilm(dataFilms = 1, subPageNav = 1) {
+    this.dataFilmsFlag = dataFilms;
+    console.log(this.dataFilmsFlag);
+    // console.log(Number.isInteger(dataFilms));
+
+    //Для рендера стартовой(1) страницы и клику по номеру пагинации(компоненту навигации):
+    if (Number.isInteger(dataFilms)) {
+      fetch(
+        `${this.baseUrl}${this.allFilms}movie${this.apiKey}&page=${
+          subPageNav !== 1 ? subPageNav : dataFilms
+        }`,
+      )
+        .then(response => response.json())
+        .then(data => {
+          this.totalPage = data.total_pages;
+          data.results.length = this.amountFilmDeviceNumber;
+          this.renderedFilmsOnPage = data.results;
+          this.createCardsFilm(data.results);
+          pagination(this.activePage, this.totalPage);
+        })
+        .catch(error => console.error(error));
+    }
+    //Для рендера страницы по inputValue(ФОРМА ПОИСКА):
+    if (typeof dataFilms === 'string') {
+      console.log('string');
+
+      fetch(
+        `${this.baseUrl}${this.searchMovie}${this.apiKey}&query=${dataFilms}&page=${subPageNav}`,
+      )
+        .then(response => response.json())
+        .then(data => {
+          this.totalPage = data.total_pages;
+          data.results.length = this.amountFilmDeviceNumber;
+          this.renderedFilmsOnPage = data.results;
+          this.createCardsFilm(data.results);
+          pagination(this.activePage, this.totalPage);
+        })
+        .catch(error => console.error(error));
+    }
+    //////////////Для рендера  страницы с localStorage:( ДОПИСАТЬ НА КОЛИЧЕСТВО РЕНДЕРА)
+    if (Array.isArray(dataFilms)) {
+      this.dataFilmsFlag = dataFilms;
+      this.totalPage = Math.ceil(
+        dataFilms.length / this.amountFilmDeviceNumber,
+      );
+      if (subPageNav === 1) {
+        dataFilms.length = this.amountFilmDeviceNumber;
+        console.log(dataFilms);
+      }
+      // if (subPageNav !== 1 && dataFilms.length > this.amountFilmDeviceNumber) {
+      //   dataFilms = this.dataFilmsFlag.slice(this.amountFilmDeviceNumber - 1);
+      //   console.log(dataFilms);
+
+      //   if (dataFilms.length <= this.amountFilmDeviceNumber) {
+      //     dataFilms = this.dataFilmsFlag.slice(0, dataFilms.length - 1);
+      //   }
+      // }
+
+      this.renderedFilmsOnPage = dataFilms;
+      this.createCardsFilm(dataFilms);
+      containerPag.innerHTML = '';
+
+      pagination(subPageNav > 1 ? subPageNav : this.activePage, this.totalPage);
+      document
+        .querySelectorAll('.main_hidevoteaverage')
+        .forEach(el => el.classList.remove('main_hidevoteaverage'));
+    }
   },
 
-  createCartFilm(items) {
+  createCardsFilm(items) {
+    containerFilms.innerHTML = '';
     const layoutFilms = items.map(item => divTempalte(item)).join('');
+
     containerFilms.insertAdjacentHTML('beforeend', layoutFilms);
+
+    containerFilms.querySelectorAll('img').forEach(el => {
+      el.src.length < 33
+        ? (el.src =
+            'https://broadcastingandmedia.com/img/logos/1560408459FilmingSmall.jpg')
+        : el.src;
+    });
+
+    containerFilms.addEventListener(
+      'click',
+      this.callbackOpenDetail.bind(this),
+    );
+  },
+
+  callbackOpenDetail(e) {
+    let idClickFilmToNum = Number(e.target.dataset.id);
+    this.clickedPageObject = this.renderedFilmsOnPage.find(
+      f => f.id === idClickFilmToNum,
+    );
+    OpenDetailModal(this.clickedPageObject); // ФУНКЦИЯ ВЫЗОВА DETAIL
   },
 };
 
-renderAPI.infoAllFilm(2);
+renderAPI.infoAllFilm('sport');
 
-// let GetAPIConfigurationImages = {
-//   base_url: 'http://image.tmdb.org/t/p/',
-//   secure_base_url: 'https://image.tmdb.org/t/p/',
-//   backdrop_sizes: ['w300', 'w780', 'w1280', 'original'],
-// };
-
-// fetch(
-//   'https://api.themoviedb.org/3/discover/movie?api_key=62d44aec954e70e62cd2b71881d93db4',
-// )
-//   .then(response => {
-//     console.log(response);
-//     return response.json();
-//   })
-//   .then(data => {
-//     console.log(data);
-//     return n.insertAdjacentHTML(
-//       'beforeend',
-//       `<img src='${GetAPIConfigurationImages.secure_base_url}${GetAPIConfigurationImages.backdrop_sizes[1]}${data.results[0].backdrop_path}' alt='img'/>`,
-//     );
-//   });
-
-//Для расшифровки жанров:
-// fetch(
-//   'https://api.themoviedb.org/3/genre/movie/list?api_key=62d44aec954e70e62cd2b71881d93db4',
-// )
-//   .then(response => {
-//     console.log(response);
-//     return response.json();
-//   })
-//   .then(data => {
-//     console.log(data);
-//   });
+export { renderAPI };
 
 //fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api
 //============================================================================================
 // NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION
 
-// let activePage = 7;
-// let amontPage = 45;
-// let containerPag = document.querySelector('.pag');
+// let containerPag = document.querySelector('.main-pagination-navigatin');
 // containerPag.addEventListener('click', cbel);
 // function cbel(e) {
+//   event.preventDefault();
 //   if (e.target.tagName === 'BUTTON') {
-//     console.dir(e.target);
-//     console.log(e.target.textContent);
-//     // Вызов функции рендера страницы(заимпортированой)
+//     let numberPageActive = Number(e.target.textContent);
+//     (renderAPI.activePage = numberPageActive),
+//       // Вызов функции рендера страницы(заимпортированой)
+//       (containerPag.innerHTML = '');
+//     renderAPI.infoAllFilm(renderAPI.dataFilmsFlag, numberPageActive);
 //   }
 // }
 
@@ -126,6 +167,10 @@ renderAPI.infoAllFilm(2);
 //   let activePageNext2 = activePage + 2;
 
 //   let layoutCont = document.createElement('div');
+//   layoutCont.style.margin = '0 auto';
+//   layoutCont.style.width = 'max-content';
+//   console.dir(layoutCont);
+
 //   layoutCont.insertAdjacentHTML(
 //     'afterbegin',
 //     `<button style='background: #ff0; border: 1px solid; margin: 1px'>${activePage}</button>`,
@@ -160,5 +205,12 @@ renderAPI.infoAllFilm(2);
 //   containerPag.insertAdjacentElement('afterbegin', layoutCont);
 // }
 
-// pagination(activePage, amontPage);
 // NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION
+
+//--????????????????????????????????????????????????????????????????????????
+// import {
+//   arrFromLocalStor,
+//   arrayForLibaryLocalStorage,
+// } from '../supercomp/supercomp';
+// console.log('?!!supercomp!!?:', arrayForLibaryLocalStorage);
+//--????????????????????????????????????????????????????????????????????????
