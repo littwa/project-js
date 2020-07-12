@@ -50,6 +50,7 @@
 }
 
 .card__title {
+  font-family: Roboto;
   margin: 0;
 }
 .genre-list {
@@ -60,12 +61,15 @@
   line-height: 16px;
 }
 .genre-list__item {
+  line-height: 12px;
   margin-right: 5px;
 }
 
 .card__year {
-  padding: 0 2px;
-  border-left: 2px solid #ff6b09;
+  letter-spacing: 0.6px;
+  padding: 0 4px;
+  line-height: 12px;
+  border-left: 1px solid #ff6b09;
 }
 
 .main_card-vote {

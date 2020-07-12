@@ -14,9 +14,6 @@ import './components/Header/header';
 // watched, queue - названия ключей для записи(и чтения) данных с localStorage
 // pageNumber - активной страницы
 
-<<<<<<< HEAD
-=======
 // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
 // document.querySelector('.qw').insertAdjacentText('beforeend', obj.prop);
 // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
->>>>>>> 72e3db942c812e931819cbcd4bb6ff8de2356523

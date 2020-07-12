@@ -14,10 +14,6 @@ html {
 
 body {
   margin: 0;
-<<<<<<< HEAD
-  padding: 0;
-=======
->>>>>>> 72e3db942c812e931819cbcd4bb6ff8de2356523
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -118,31 +114,12 @@ body {
 
 
 
-<<<<<<< HEAD
-  @media (min-width: 768px) {
-    .main-section {
-      width: 768px;
-    }
-    .container_cart-films {
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
-    .container{width: 620px;}
-=======
 @media (min-width: 768px) {
   .container {
     width: 620px;
->>>>>>> 72e3db942c812e931819cbcd4bb6ff8de2356523
   }
 }
 
-<<<<<<< HEAD
-  @media (min-width: 1024px) {
-    .container{width: 876px;}
-  }
-=======
 @media (min-width: 1024px) {
   .container {
     width: 876px;
@@ -150,4 +127,3 @@ body {
 }
 
 /* Медиазапросы Медиазапросы Медиазапросы Медиазапросы Медиазапросы  */
->>>>>>> 72e3db942c812e931819cbcd4bb6ff8de2356523
