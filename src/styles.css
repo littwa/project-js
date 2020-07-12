@@ -21,12 +21,17 @@ body {
   margin: 0 auto;
 }
 
-  @media (min-width: 768px) {
-    .container{width: 620px;}
+@media (min-width: 768px) {
+  .container {
+    width: 620px;
   }
+}
 
-  @media (min-width: 1024px) {
-    .container{width: 876px;}
+@media (min-width: 1024px) {
+  .container {
+    width: 876px;
   }
+}
 
-  /* Медиазапросы Медиазапросы Медиазапросы Медиазапросы Медиазапросы  */
+
+/* Медиазапросы Медиазапросы Медиазапросы Медиазапросы Медиазапросы  */
