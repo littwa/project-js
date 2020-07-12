@@ -17,10 +17,13 @@ const refs = {
 
 refs.inputValue.addEventListener('input', _.debounce(cbSearch, 600));
 function cbSearch(e) {
-  console.log(e.target.value);
+  // console.log(e.target.value);
   containerPag.innerHTML = '';
   renderAPI.activePage = 1;
-  renderAPI.infoAllFilm(e.target.value);
+
+  e.target.value === ''
+    ? renderAPI.infoAllFilm(1)
+    : renderAPI.infoAllFilm(e.target.value);
 }
 
 //=================================================
@@ -41,12 +44,13 @@ function showLibrary() {
   refs.warning.style.display = 'none';
 
   refs.headerWrapper.classList.add('header-library-img');
+
   // дописать код, который вставляет кнопки
 
   // дописать код, который вызывает функцию отрисовывки массива обьектов из списка "очередь"
 }
 
-function showHomePage() {
+export function showHomePage() {
   refs.library.classList.remove('hover');
   refs.home.classList.add('hover');
 
@@ -55,7 +59,11 @@ function showHomePage() {
   refs.inputValue.value = '';
 
   refs.headerWrapper.classList.remove('header-library-img');
-  renderAPI.infoAllFilm();
+
+  renderAPI.activePage = 1;
+  containerPag.innerHTML = '';
+  renderAPI.infoAllFilm(1);
+  console.log('!!!!!!!!!!!!!!!!!!!');
 }
 
 // Функция для Ярослава
@@ -66,3 +74,5 @@ function showDetailPage() {
   refs.input.style.display = 'none';
   refs.headerWrapper.classList.add('header-detail-img');
 }
+
+export { refs };
