@@ -1,12 +1,17 @@
 import './Main.css';
 import './style-list.css';
-import { OpenDetailModal } from '../Detail/Detail.js';
+// import { OpenDetailModal } from '../Detail/Detail.js';
 import divTempalte from './template-film_list.hbs';
 import amountFilimDevice from './AmountFilimDevice';
 import Handlebars from 'handlebars/runtime';
 import arrGenres from './arrGenres.js';
 import { pagination, containerPag } from '../Navigation/Navigation.js';
-const containerFilms = document.querySelector('.main-container_cart-films');
+import { detailsPlusHbs, OpenDetailModal } from '../details/details.js';
+import { refs } from '../Header/header.js';
+export const containerFilms = document.querySelector(
+  '.main-container_cart-films',
+);
+let _ = require('lodash');
 
 Handlebars.registerHelper('loud', function (date) {
   if (date) {
@@ -38,10 +43,12 @@ let renderAPI = {
   dataFilmsFlag: 1,
   activePage: 1,
   totalPage: 1,
+  idList: 1,
 
   infoAllFilm(dataFilms = 1, subPageNav = 1) {
     this.dataFilmsFlag = dataFilms;
     console.log(this.dataFilmsFlag);
+    refs.warning.style.display = 'none';
     // console.log(Number.isInteger(dataFilms));
 
     //Для рендера стартовой(1) страницы и клику по номеру пагинации(компоненту навигации):
@@ -70,6 +77,12 @@ let renderAPI = {
       )
         .then(response => response.json())
         .then(data => {
+          if (data.total_pages === 0) {
+            refs.warning.style.display = 'block';
+            document.querySelector('.header-warning-text').style.textAlign =
+              'center';
+            return;
+          }
           this.totalPage = data.total_pages;
           data.results.length = this.amountFilmDeviceNumber;
           this.renderedFilmsOnPage = data.results;
@@ -120,95 +133,26 @@ let renderAPI = {
             'https://broadcastingandmedia.com/img/logos/1560408459FilmingSmall.jpg')
         : el.src;
     });
-
-    containerFilms.addEventListener(
-      'click',
-      this.callbackOpenDetail.bind(this),
-    );
   },
 
   callbackOpenDetail(e) {
+    console.dir('cl', e.target);
     let idClickFilmToNum = Number(e.target.dataset.id);
     this.clickedPageObject = this.renderedFilmsOnPage.find(
       f => f.id === idClickFilmToNum,
     );
-    OpenDetailModal(this.clickedPageObject); // ФУНКЦИЯ ВЫЗОВА DETAIL
+
+    if (e.target.tagName === 'IMG') {
+      // ФУНКЦИЯ ВЫЗОВА DETAIL
+      OpenDetailModal(this.clickedPageObject);
+      // console.log('1');
+    }
   },
 };
-
+containerFilms.addEventListener(
+  'click',
+  renderAPI.callbackOpenDetail.bind(renderAPI),
+);
 renderAPI.infoAllFilm();
 
 export { renderAPI };
-
-//fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api
-//============================================================================================
-// NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION
-
-// let containerPag = document.querySelector('.main-pagination-navigatin');
-// containerPag.addEventListener('click', cbel);
-// function cbel(e) {
-//   event.preventDefault();
-//   if (e.target.tagName === 'BUTTON') {
-//     let numberPageActive = Number(e.target.textContent);
-//     (renderAPI.activePage = numberPageActive),
-//       // Вызов функции рендера страницы(заимпортированой)
-//       (containerPag.innerHTML = '');
-//     renderAPI.infoAllFilm(renderAPI.dataFilmsFlag, numberPageActive);
-//   }
-// }
-
-// function pagination(activePage, amontPage) {
-//   let activePagePrevious1 = activePage - 1;
-//   let activePagePrevious2 = activePage - 2;
-
-//   let activePageNext1 = activePage + 1;
-//   let activePageNext2 = activePage + 2;
-
-//   let layoutCont = document.createElement('div');
-//   layoutCont.style.margin = '0 auto';
-//   layoutCont.style.width = 'max-content';
-//   console.dir(layoutCont);
-
-//   layoutCont.insertAdjacentHTML(
-//     'afterbegin',
-//     `<button style='background: #ff0; border: 1px solid; margin: 1px'>${activePage}</button>`,
-//   );
-
-//   if (activePagePrevious1 > 0) {
-//     console.log(activePagePrevious1);
-//     layoutCont.insertAdjacentHTML(
-//       'afterbegin',
-//       `<button style='border: 1px solid; margin: 1px'>${activePagePrevious1}</button>`,
-//     );
-//   }
-//   if (activePagePrevious2 > 0) {
-//     layoutCont.insertAdjacentHTML(
-//       'afterbegin',
-//       `<button style='border: 1px solid; margin: 1px'>${activePagePrevious2}</button>`,
-//     );
-//   }
-
-//   if (activePageNext1 <= amontPage) {
-//     layoutCont.insertAdjacentHTML(
-//       'beforeend',
-//       `<button style='border: 1px solid; margin: 1px'>${activePageNext1}</button>`,
-//     );
-//   }
-//   if (activePageNext2 <= amontPage) {
-//     layoutCont.insertAdjacentHTML(
-//       'beforeend',
-//       `<button style='border: 1px solid; margin: 1px'>${activePageNext2}</button>`,
-//     );
-//   }
-//   containerPag.insertAdjacentElement('afterbegin', layoutCont);
-// }
-
-// NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION NAVIGATION PAGINATION
-
-//--????????????????????????????????????????????????????????????????????????
-// import {
-//   arrFromLocalStor,
-//   arrayForLibaryLocalStorage,
-// } from '../supercomp/supercomp';
-// console.log('?!!supercomp!!?:', arrayForLibaryLocalStorage);
-//--????????????????????????????????????????????????????????????????????????

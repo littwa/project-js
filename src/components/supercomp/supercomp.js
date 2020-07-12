@@ -1,21 +1,23 @@
 import './supercomp.css';
 import { renderAPI } from '../Main/Main.js';
+import { pagination, containerPag } from '../Navigation/Navigation.js';
 //======================================================================================================
-// let n = document.querySelector('header');
-// let d = document.createElement('div');
-// d.classList.add('dd');
-// n.insertAdjacentElement('afterbegin', d);
-// d.insertAdjacentText('afterbegin', 'Компонент "supercomp (MY LIBARY)"|');
-// d.addEventListener('click', arrFromLocalStor);
+let n = document.querySelector('header');
+let d = document.createElement('div');
+d.classList.add('dd');
+n.insertAdjacentElement('afterbegin', d);
+d.insertAdjacentText('afterbegin', 'Компонент "supercomp (MY LIBARY)"|');
+d.addEventListener('click', arrFromLocalStor);
 
 // //====================================================================================================
-// export function arrFromLocalStor(e) {
-//   // console.log(e);
-//   renderAPI.infoAllFilm(arrayForLibaryLocalStorage, 1);
-//   renderAPI.activePage === 1;
-//   console.log(renderAPI.activePage);
-// }
-// console.log('arr:', arrFilmsWatched);
+export function arrFromLocalStor(e) {
+  // console.log(e);
+  containerPag.innerHTML = '';
+  renderAPI.activePage = 1;
+  renderAPI.infoAllFilm(arrayForLibaryLocalStorage, 1);
+  renderAPI.activePage === 1;
+  console.log(renderAPI.activePage);
+}
 
 //========================================================================================================
 
