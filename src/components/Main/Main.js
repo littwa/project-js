@@ -5,10 +5,7 @@ import divTempalte from './template-film_list.hbs';
 import amountFilimDevice from './AmountFilimDevice';
 import Handlebars from 'handlebars/runtime';
 import arrGenres from './arrGenres.js';
-import {
-  pagination,
-  containerPag,
-} from '../NavigationPagination/NavigationPagination.js';
+import { pagination, containerPag } from '../Navigation/Navigation.js';
 const containerFilms = document.querySelector('.main-container_cart-films');
 
 Handlebars.registerHelper('loud', function (date) {
@@ -18,6 +15,7 @@ Handlebars.registerHelper('loud', function (date) {
     return 'XXXX';
   }
 });
+
 Handlebars.registerHelper('genres', function (genresId) {
   return arrGenres.reduce((ac, el) => {
     el.id === genresId ? (ac = el.name + ',') : genresId;
@@ -138,7 +136,7 @@ let renderAPI = {
   },
 };
 
-renderAPI.infoAllFilm('sport');
+renderAPI.infoAllFilm();
 
 export { renderAPI };
 

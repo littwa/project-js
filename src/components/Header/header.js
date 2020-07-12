@@ -1,5 +1,8 @@
 // импорт кнопок для библиотеки
 // импорт функции отрисовки списка "очередь" (а может и не нужно здесь это)
+import { renderAPI } from '../Main/Main.js';
+import { pagination, containerPag } from '../Navigation/Navigation.js';
+let _ = require('lodash');
 
 const refs = {
   logo: document.querySelector('.js-logo'),
@@ -10,8 +13,17 @@ const refs = {
   headerWrapper: document.querySelector('.header-wrapper'),
   warning: document.querySelector('.header-warning'),
 };
+//=====================================
 
-console.log('111', refs.inputValue.value);
+refs.inputValue.addEventListener('input', _.debounce(cbSearch, 600));
+function cbSearch(e) {
+  console.log(e.target.value);
+  containerPag.innerHTML = '';
+  renderAPI.activePage = 1;
+  renderAPI.infoAllFilm(e.target.value);
+}
+
+//=================================================
 
 document.addEventListener('DOMContentLoaded', homeHoverActive);
 refs.library.addEventListener('click', showLibrary);
@@ -43,6 +55,7 @@ function showHomePage() {
   refs.inputValue.value = '';
 
   refs.headerWrapper.classList.remove('header-library-img');
+  renderAPI.infoAllFilm();
 }
 
 // Функция для Ярослава
