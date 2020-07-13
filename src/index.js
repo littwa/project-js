@@ -1,9 +1,8 @@
 import './styles.css';
-import {createCartFilm, superItems} from '././components/main/index-list.js'
-import './components/header/test-input.js'
+import '../src/components/comp_buttons_w_q/buttons_w_q';
 
 // import './components/test/test.js';
-import './components/supercomp/supercomp.js';
+// import './components/supercomp/supercomp.js';
 import './components/Main/Main.js';
 // import { obj } from './components/supercomp/supercomp.js';
 

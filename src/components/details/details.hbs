@@ -1,0 +1,156 @@
+
+
+    <header class="header-wrapper">
+     
+      <div class="container header">
+        <div class="header-first-line">
+          <div class="header-logo">
+            <a href="#" class="header-logo-link js-logo">
+              <svg class="header-logo-icon icon-film">
+                <use href="images/icons/symbol-defs.svg#film"></use>
+              </svg>
+              <p class="header-logo-text">Filmoteka</p>
+            </a>
+          </div>
+          <nav class="header-nav">
+            <ul class="header-nav-list">
+              <li class="nav-item" id="header-home">
+                <a class="nav-link js-home" href="#">Home</a>
+              </li>
+              <li class="nav-item" id="header-library">
+                <a class="nav-link js-library" href="#">My library</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="header-input">
+          <input
+            type="text"
+            name="search"
+            class="header-search"
+            id="searchhh"
+            placeholder="Поиск фильмов"
+            autocomplete="off"
+          />
+        </div>
+        <div class="header-warning">
+          <p class="header-warning-text">
+            Search result not successful. Enter the correct movie name and try
+            again.
+          </p>
+        </div>
+
+        <div class="header-btn">
+        
+        </div>
+      </div>
+    </header>
+
+<div class="section-box">
+    <div class="section-box__details">
+        <div class="details">
+            <div class="details-tablet__version">
+                <img class="details-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}">
+            </div>
+            <div id="mob-modern" class="details-tablet__version">
+                <div class="details-tablet__version-tablet">
+                    <h2 class="details__main-title" data-title="{{original_title}}">{{original_title}}</h2>
+                    <div class="detail-box">
+                        <div class="detail-box__div">
+                            <p class="detail-box__description">vote / votes</p>
+
+                        </div>
+                        <div class="detail-box__div">
+                            <p class="detail-box__calculation"><span
+                                    class="detail-box__div-span">{{vote_average}}</span> /
+                                {{vote_count}}</p>
+
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-box__div">
+                            <p class="detail-box__description">popularity</p>
+
+                        </div>
+                        <div class="detail-box__div">
+                            <p class="detail-box__calculation">{{popularityMath popularity}}</p>
+
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-box__div">
+                            <p class="detail-box__description">Original Title</p>
+
+                        </div>
+                        <div class="detail-box__div">
+                            <p class="detail-box__calculation detail-box__calculation-upper">{{original_title}}</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <div class="detail-box__div">
+                        <p class="detail-box__description">Genre</p>
+
+                    </div>
+                    <div class="detail-box__div">
+                        <ul class="detail-box__calculation">{{#each genre_ids }}
+                            <li class="detail-box__div-li">{{genres this}}</li>
+                            {{/each}}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+                <h3 class="details__secondary-title">ABOUT</h3>
+                <p class="details-overview">{{overview}}</p>
+
+        
+      <div class="add_buttons container">
+      <button class="add_to_watched">ADD TO WATCHED</button>
+      <button class="add_to_queue">ADD TO QUEUE</button>
+    </div>
+                
+
+
+            </div>
+        </div>
+
+        <div class="section-box__footer">
+            <footer class="footer-wraper">
+               
+                <div class="footer container">
+                    <div class="footer-content">
+                        <p class="footer-text">
+                            <svg class="footer-icon icon-copyright" viewBox="-10 -14 42 42">
+                                <path
+                                    d="M13.44 14.48c0.067-0.44 0.213-0.827 0.4-1.16s0.453-0.613 0.787-0.827c0.32-0.2 0.72-0.293 1.213-0.307 0.307 0.013 0.587 0.067 0.84 0.173 0.267 0.12 0.507 0.28 0.693 0.48s0.333 0.44 0.453 0.707 0.173 0.56 0.187 0.853h2.387c-0.027-0.627-0.147-1.2-0.373-1.72s-0.533-0.973-0.933-1.347-0.88-0.667-1.44-0.88-1.173-0.307-1.853-0.307c-0.867 0-1.627 0.147-2.267 0.453s-1.173 0.707-1.6 1.227-0.747 1.12-0.947 1.813-0.32 1.413-0.32 2.187v0.36c0 0.773 0.107 1.493 0.307 2.187s0.52 1.293 0.947 1.8 0.96 0.92 1.6 1.213 1.4 0.453 2.267 0.453c0.627 0 1.213-0.107 1.76-0.307s1.027-0.48 1.44-0.84 0.747-0.773 0.987-1.253 0.387-0.987 0.4-1.533h-2.387c-0.013 0.28-0.080 0.533-0.2 0.773s-0.28 0.44-0.48 0.613-0.427 0.307-0.693 0.4c-0.253 0.093-0.52 0.12-0.8 0.133-0.48-0.013-0.88-0.107-1.187-0.307-0.333-0.213-0.6-0.493-0.787-0.827s-0.333-0.733-0.4-1.173-0.107-0.893-0.107-1.333v-0.36c0-0.467 0.040-0.907 0.107-1.347zM16 2.667c-7.36 0-13.333 5.973-13.333 13.333s5.973 13.333 13.333 13.333 13.333-5.973 13.333-13.333-5.973-13.333-13.333-13.333zM16 26.667c-5.88 0-10.667-4.787-10.667-10.667s4.787-10.667 10.667-10.667 10.667 4.787 10.667 10.667-4.787 10.667-10.667 10.667z">
+                                </path>
+
+                            </svg>
+                            2020 | All Rights Reserved
+                            <span class="footer-mobile-hidden">|</span>
+                        </p>
+                        <p class="footer-text">
+                            Developed with
+                            <svg class="footer-icon icon-heart" viewBox="-3 -12 42 42">
+                                <path
+                                    d="M16 30.72l-2.24-2.24c-8.32-7.36-13.76-12.32-13.76-18.4 0-4.96 3.84-8.8 8.8-8.8 2.72 0 5.44 1.28 7.2 3.36 1.76-2.080 4.48-3.36 7.2-3.36 4.96 0 8.8 3.84 8.8 8.8 0 6.080-5.44 11.040-13.76 18.4l-2.24 2.24z">
+                                </path>
+                            </svg>
+                            by <a class="footer-contact-link" href="#">GoIT Students</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+    </div>
+
+
+
+</div>

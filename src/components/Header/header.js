@@ -1,5 +1,3 @@
-// импорт кнопок для библиотеки
-// импорт функции отрисовки списка "очередь" (а может и не нужно здесь это)
 import { renderAPI } from '../Main/Main.js';
 import { pagination, containerPag } from '../Navigation/Navigation.js';
 let _ = require('lodash');
@@ -13,17 +11,17 @@ const refs = {
   headerWrapper: document.querySelector('.header-wrapper'),
   warning: document.querySelector('.header-warning'),
 };
-//=====================================
 
 refs.inputValue.addEventListener('input', _.debounce(cbSearch, 600));
 function cbSearch(e) {
-  console.log(e.target.value);
+  // console.log(e.target.value);
   containerPag.innerHTML = '';
   renderAPI.activePage = 1;
-  renderAPI.infoAllFilm(e.target.value);
-}
 
-//=================================================
+  e.target.value === ''
+    ? renderAPI.infoAllFilm(1)
+    : renderAPI.infoAllFilm(e.target.value);
+}
 
 document.addEventListener('DOMContentLoaded', homeHoverActive);
 refs.library.addEventListener('click', showLibrary);
@@ -33,7 +31,9 @@ function homeHoverActive() {
   refs.home.classList.add('hover');
 }
 
-function showLibrary() {
+let headerButtonsBlock = document.querySelector('.header__buttons_block');
+
+export function showLibrary() {
   refs.home.classList.remove('hover');
   refs.library.classList.add('hover');
 
@@ -41,28 +41,58 @@ function showLibrary() {
   refs.warning.style.display = 'none';
 
   refs.headerWrapper.classList.add('header-library-img');
-  // дописать код, который вставляет кнопки
 
-  // дописать код, который вызывает функцию отрисовывки массива обьектов из списка "очередь"
+  headerButtonsBlock.style.display = 'flex';
 }
 
-function showHomePage() {
+export function showHomePage() {
   refs.library.classList.remove('hover');
   refs.home.classList.add('hover');
 
   refs.input.style.display = 'block';
   refs.warning.style.display = 'none';
+  headerButtonsBlock.style.display = 'none';
   refs.inputValue.value = '';
 
   refs.headerWrapper.classList.remove('header-library-img');
-  renderAPI.infoAllFilm();
+
+  renderAPI.activePage = 1;
+  containerPag.innerHTML = '';
+  renderAPI.infoAllFilm(1);
 }
 
-// Функция для Ярослава
-function showDetailPage() {
-  refs.home.classList.remove('hover');
-  refs.library.classList.remove('hover');
+export { refs };
 
-  refs.input.style.display = 'none';
-  refs.headerWrapper.classList.add('header-detail-img');
-}
+const refsLocal = {
+  buttons: document.querySelector('.js-buttons-block'),
+  watched: document.querySelector('.js-watched'),
+  queue: document.querySelector('.js-queue'),
+};
+
+refsLocal.buttons.addEventListener('click', ev => {
+  if (ev.target === refsLocal.watched) {
+    refsLocal.watched.classList.add('is_active');
+    refsLocal.queue.classList.remove('is_active');
+  } else {
+    refsLocal.watched.classList.remove('is_active');
+    refsLocal.queue.classList.add('is_active');
+  }
+});
+
+refsLocal.watched.addEventListener('click', e => {
+  const str = localStorage.getItem('watched');
+  const data = JSON.parse(str);
+  renderAPI.activePage = 1;
+  containerPag.innerHTML = '';
+  renderAPI.infoAllFilm(data);
+  renderAPI.dataFilmsFlag = data;
+});
+
+refsLocal.queue.addEventListener('click', e => {
+  const str = localStorage.getItem('queue');
+  const data = JSON.parse(str);
+  renderAPI.activePage = 1;
+  containerPag.innerHTML = '';
+  renderAPI.infoAllFilm(data);
+  renderAPI.dataFilmsFlag = data;
+});

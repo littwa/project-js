@@ -1,0 +1,43 @@
+.add_to_watched {
+  height: 44px;
+  width: 130px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #000;
+  border: 1px solid #000;
+  background: rgba(255, 255, 255, 0);
+  font-family: Roboto, Verdana, sans-serif;
+}
+
+.add_to_queue {
+  height: 44px;
+  width: 130px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #000;
+  border: 1px solid #000;
+  background: rgba(255, 255, 255, 0);
+  font-family: Roboto, Verdana, sans-serif;
+}
+
+.is_active {
+  background: rgba(255,107,8,1);
+  border: rgba(255,107,8,1);
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+
+  .header__button_watched {
+    width: 136px;
+    margin-right: 14px;
+  }
+
+  .header__button_queue {
+    width: 136px;
+  }
+
+  .header__buttons_block {
+    justify-content: center;
+  }
+}

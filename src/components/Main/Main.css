@@ -1,5 +1,3 @@
-.d {
-  width: 150px;
-  height: 150px;
-  background-color: #7fff85;
+.js-menu__item:hover {
+  cursor: pointer;
 }
