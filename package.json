@@ -49,9 +49,9 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.3",
     "core-js": "^3.6.4",
     "handlebars": "^4.7.3",
-    "lodash": "^4.17.19",
-    "basiclightbox": "^5.0.3"
+    "lodash": "^4.17.19"
   }
 }

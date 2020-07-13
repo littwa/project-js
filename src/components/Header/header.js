@@ -1,3 +1,5 @@
+import './header.css';
+
 import { renderAPI } from '../Main/Main.js';
 import { pagination, containerPag } from '../Navigation/Navigation.js';
 let _ = require('lodash');
