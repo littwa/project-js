@@ -37,20 +37,23 @@
 }
 
 .card__content {
-  font-family: Roboto;
+  height: 27px;
+  font-family: 'Roboto';
   line-height: 16px;
   font-weight: 500;
   font-size: 12px;
 }
 .card__info {
-  height: 27px;
   color: #ff6b09;
   display: flex;
   align-items: center;
 }
 
 .card__title {
-  font-family: Roboto;
+  font-size: 12px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  line-height: 16px;
   margin: 0;
 }
 .genre-list {
@@ -59,18 +62,31 @@
   display: flex;
   justify-content: left;
   line-height: 16px;
+  font-family: 'Roboto';
+
 }
 .genre-list__item {
   line-height: 12px;
   margin-right: 5px;
 }
+.genre-list__item:not(:last-child):after {
+  content: ', ';
+}
 
 .card__year {
   letter-spacing: 0.6px;
   padding: 0 4px;
-  line-height: 12px;
-  border-left: 1px solid #ff6b09;
+  line-height: 16px;
+  position: relative;
 }
+
+.card__year::before {
+  position: absolute;
+  content: '|';
+  left: -2px;
+}
+
+
 
 .main_card-vote {
   padding: 2px 6px;

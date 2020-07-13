@@ -22,9 +22,10 @@ Handlebars.registerHelper('loud', function (date) {
 });
 
 Handlebars.registerHelper('genres', function (genresId) {
+  
   return arrGenres.reduce((ac, el) => {
-    el.id === genresId ? (ac = el.name + ',') : genresId;
-    return ac;
+    el.id === genresId ? (ac = el.name ) : genresId;
+    return ac
   }, '');
 });
 

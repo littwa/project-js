@@ -237,6 +237,10 @@
   list-style: none;
 }
 
+.detail-box__div-li:not(:last-child):after {
+  content: ', ';
+}
+
 .details__secondary-title {
   flex-direction: row;
   justify-content: flex-start;

@@ -1,41 +1,60 @@
-.nav_pagin {
-  width: 50px;
-  height: 50px;
-  margin: 10px;
-  border: 0;
-  border-radius: 5px;
-  background-color: #ffffff;
-  cursor: pointer;
+.main-pagination-navigatin {
+  margin-bottom: 34px;
 }
-.nav_pagin-act {
-  width: 50px;
-  height: 50px;
-  margin: 3px;
-  border: 0;
-  border-radius: 5px;
-  background-color: #ff6b08;
-  cursor: pointer;
-}
-.nav_pagin_arrow-left {
-  width: 50px;
-  height: 50px;
-  margin: 3px;
-  border: 0;
-  border-radius: 5px;
-  background-color: #f1f0f0;
-  background-image: url(../../images/icons/arrow-left.svg);
-  background-size: cover;
+
+
+.nav_pagin,
+.nav_pagin-act{
+  font-size: 14px;
+  font-family: Roboto;
+  font-weight: 400;
   cursor: pointer;
 }
 
-.nav_pagin_arrow-right {
-  width: 50px;
-  height: 50px;
-  margin: 3px;
+
+.nav_pagin {
+  width: 28px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
   border: 0;
-  border-radius: 4px;
-  background-color: #f1f0f0;
-  background-image: url(../../images/icons/arrow-right.svg);
-  background-size: cover;
+  border-radius: 5px;
+  background-color: #ffffff;
+  outline: none;
+}
+.nav_pagin-act {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #ff6b08;
+  color: #fff;
+ 
+}
+
+.nav_pagin_arrow-left,
+.nav_pagin_arrow-right{
+  margin: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #f7f7f7;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  border: 0;
+} 
+
+.nav_pagin_arrow-left {
+  margin-right: 20px;
+  background-image: url(../../images/icons/arrow-left.svg);
+}
+
+
+.nav_pagin_arrow-right {
+  margin-left: 20px;
+  background-image: url(../../images/icons/arrow-right.svg);
 }
