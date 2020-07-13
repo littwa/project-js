@@ -1,9 +1,7 @@
-{{!-- <div class="details-bcg">
-    <img class="details-bcg-img">
-</div> --}}
+
 
     <header class="header-wrapper">
-      <!-- Здесь разметка по хедера -->
+     
       <div class="container header">
         <div class="header-first-line">
           <div class="header-logo">
@@ -16,10 +14,10 @@
           </div>
           <nav class="header-nav">
             <ul class="header-nav-list">
-              <li class="nav-item">
+              <li class="nav-item" id="header-home">
                 <a class="nav-link js-home" href="#">Home</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="header-library">
                 <a class="nav-link js-library" href="#">My library</a>
               </li>
             </ul>
@@ -44,7 +42,7 @@
         </div>
 
         <div class="header-btn">
-          <!-- вставить здесь 2 кнопки  -->
+        
         </div>
       </div>
     </header>
@@ -55,7 +53,7 @@
             <div class="details-tablet__version">
                 <img class="details-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}">
             </div>
-            <div class="details-tablet__version">
+            <div id="mob-modern" class="details-tablet__version">
                 <div class="details-tablet__version-tablet">
                     <h2 class="details__main-title" data-title="{{original_title}}">{{original_title}}</h2>
                     <div class="detail-box">
@@ -110,9 +108,12 @@
                 <h3 class="details__secondary-title">ABOUT</h3>
                 <p class="details-overview">{{overview}}</p>
 
-                <div class="details-button">
-
-                </div>
+        
+      <div class="add_buttons container">
+      <button class="add_to_watched">ADD TO WATCHED</button>
+      <button class="add_to_queue">ADD TO QUEUE</button>
+    </div>
+                
 
 
             </div>
@@ -120,7 +121,7 @@
 
         <div class="section-box__footer">
             <footer class="footer-wraper">
-                <!-- Здесь разметка по футера -->
+               
                 <div class="footer container">
                     <div class="footer-content">
                         <p class="footer-text">
