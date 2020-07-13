@@ -49,7 +49,6 @@ let renderAPI = {
     this.dataFilmsFlag = dataFilms;
     console.log(this.dataFilmsFlag);
     refs.warning.style.display = 'none';
-    // console.log(Number.isInteger(dataFilms));
 
     //Для рендера стартовой(1) страницы и клику по номеру пагинации(компоненту навигации):
     if (Number.isInteger(dataFilms)) {
@@ -70,8 +69,6 @@ let renderAPI = {
     }
     //Для рендера страницы по inputValue(ФОРМА ПОИСКА):
     if (typeof dataFilms === 'string') {
-      console.log('string');
-
       fetch(
         `${this.baseUrl}${this.searchMovie}${this.apiKey}&query=${dataFilms}&page=${subPageNav}`,
       )
@@ -91,24 +88,27 @@ let renderAPI = {
         })
         .catch(error => console.error(error));
     }
-    //////////////Для рендера  страницы с localStorage:( ДОПИСАТЬ НА КОЛИЧЕСТВО РЕНДЕРА)
+    ///Для рендера  страницы с localStorage:( ДОПИСАТЬ НА КОЛИЧЕСТВО РЕНДЕРА)
     if (Array.isArray(dataFilms)) {
-      this.dataFilmsFlag = dataFilms;
+      console.log('dataFilmsFlag', this.dataFilmsFlag);
+
       this.totalPage = Math.ceil(
         dataFilms.length / this.amountFilmDeviceNumber,
       );
-      if (subPageNav === 1) {
+      if (subPageNav === 1 && dataFilms.length >= this.amountFilmDeviceNumber) {
         dataFilms.length = this.amountFilmDeviceNumber;
-        console.log(dataFilms);
       }
-      // if (subPageNav !== 1 && dataFilms.length > this.amountFilmDeviceNumber) {
-      //   dataFilms = this.dataFilmsFlag.slice(this.amountFilmDeviceNumber - 1);
-      //   console.log(dataFilms);
 
-      //   if (dataFilms.length <= this.amountFilmDeviceNumber) {
-      //     dataFilms = this.dataFilmsFlag.slice(0, dataFilms.length - 1);
-      //   }
+      // if (
+      //   subPageNav > 1 &&
+      //   this.dataFilmsFlag.length >= this.amountFilmDeviceNumber * subPageNav
+      // ) {
+      //   dataFilms = this.dataFilmsFlag.slice(
+      //     this.amountFilmDeviceNumber * (subPageNav - 1) - 1,
+      //     this.amountFilmDeviceNumber * subPageNav - 1,
+      //   );
       // }
+      console.log('dataFilms:', dataFilms);
 
       this.renderedFilmsOnPage = dataFilms;
       this.createCardsFilm(dataFilms);
@@ -133,6 +133,10 @@ let renderAPI = {
             'https://broadcastingandmedia.com/img/logos/1560408459FilmingSmall.jpg')
         : el.src;
     });
+
+    const datawatched = JSON.parse(localStorage.getItem('watched'));
+    const dataqueue = JSON.parse(localStorage.getItem('queue'));
+    let arrLocalStor = [...datawatched, ...dataqueue];
   },
 
   callbackOpenDetail(e) {
@@ -145,7 +149,6 @@ let renderAPI = {
     if (e.target.tagName === 'IMG') {
       // ФУНКЦИЯ ВЫЗОВА DETAIL
       OpenDetailModal(this.clickedPageObject);
-      // console.log('1');
     }
   },
 };

@@ -21,17 +21,17 @@
 }
 
 .header__buttons_block {
-  display: flex;
+  display: none;
   justify-content: space-between;
+  margin-top: 30px;
 }
 
 .is_active {
-  background: rgba(255,107,8,1);
-  border: rgba(255,107,8,1);
+  background: rgba(255, 107, 8, 1);
+  border: rgba(255, 107, 8, 1);
 }
 
 @media (min-width: 768px) {
-
   .header__button_watched {
     width: 136px;
     margin-right: 14px;

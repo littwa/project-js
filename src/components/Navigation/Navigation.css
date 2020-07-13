@@ -1,0 +1,41 @@
+.nav_pagin {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+.nav_pagin-act {
+  width: 50px;
+  height: 50px;
+  margin: 3px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #ff6b08;
+  cursor: pointer;
+}
+.nav_pagin_arrow-left {
+  width: 50px;
+  height: 50px;
+  margin: 3px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #f1f0f0;
+  background-image: url(../../images/icons/arrow-left.svg);
+  background-size: cover;
+  cursor: pointer;
+}
+
+.nav_pagin_arrow-right {
+  width: 50px;
+  height: 50px;
+  margin: 3px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #f1f0f0;
+  background-image: url(../../images/icons/arrow-right.svg);
+  background-size: cover;
+  cursor: pointer;
+}

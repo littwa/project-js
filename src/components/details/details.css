@@ -74,7 +74,7 @@
 
 .nav-link:hover:focus,
 .nav-link.hover {
-  border-bottom: 2px solid rgb(255, 107, 8);
+  border-bottom: 2px solid #ff6b08;
 }
 
 .header-input {
@@ -200,9 +200,10 @@
 
 .detail-box__div-span {
   color: #fff;
-  border-radius: 5px;
+  border-radius: 2px;
   background-color: #ff6b08;
   background-size: cover;
+  padding: 0 4px;
 }
 
 .detail-box__calculation {
@@ -304,10 +305,7 @@
   font-weight: 600;
   color: #ff6b08;
 }
-.details-tablet__version {
-  /* width: 876px; */
-  /* padding: 10px; */
-}
+
 @media (min-width: 768px) {
   .details-overview {
     width: 290px;
@@ -401,5 +399,10 @@
   .detail-box__calculation {
     width: 250px;
     align-self: center;
+  }
+}
+@media (max-width: 768px) {
+  #mob-modern {
+    padding-left: 5px;
   }
 }
