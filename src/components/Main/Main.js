@@ -134,9 +134,9 @@ let renderAPI = {
         : el.src;
     });
 
-    const datawatched = JSON.parse(localStorage.getItem('watched'));
-    const dataqueue = JSON.parse(localStorage.getItem('queue'));
-    let arrLocalStor = [...datawatched, ...dataqueue];
+    // const datawatched = JSON.parse(localStorage.getItem('watched'));
+    // const dataqueue = JSON.parse(localStorage.getItem('queue'));
+    // let arrLocalStor = [...datawatched, ...dataqueue];
   },
 
   callbackOpenDetail(e) {

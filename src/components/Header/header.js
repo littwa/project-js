@@ -1,4 +1,4 @@
-import { renderAPI } from '../Main/Main.js';
+import { renderAPI, containerFilms } from '../Main/Main.js';
 import { pagination, containerPag } from '../Navigation/Navigation.js';
 let _ = require('lodash');
 
@@ -43,6 +43,8 @@ export function showLibrary() {
   refs.headerWrapper.classList.add('header-library-img');
 
   headerButtonsBlock.style.display = 'flex';
+  containerFilms.innerHTML = '';
+  containerPag.innerHTML = '';
 }
 
 export function showHomePage() {
