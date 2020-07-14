@@ -19,15 +19,18 @@
   background: rgba(255, 255, 255, 0);
   font-family: Roboto, Verdana, sans-serif;
 }
+.add_to_watched:hover,
+.add_to_queue:hover {
+  cursor: pointer;
+}
 
 .is_active {
-  background: rgba(255,107,8,1);
-  border: rgba(255,107,8,1);
+  background: rgba(255, 107, 8, 1);
+  border: rgba(255, 107, 8, 1);
   color: #fff;
 }
 
 @media (min-width: 768px) {
-
   .header__button_watched {
     width: 136px;
     margin-right: 14px;
