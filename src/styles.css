@@ -1,6 +1,4 @@
 @import './fonts.css';
-@import './components/Header/header.css';
-@import './components/Footer/footer.css';
 
 html {
   box-sizing: border-box;
