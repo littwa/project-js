@@ -20,6 +20,11 @@
   font-family: Roboto, Verdana, sans-serif;
 }
 
+.header__button_queue:hover,
+.header__button_watched:hover {
+  cursor: pointer;
+}
+
 .header__buttons_block {
   display: none;
   justify-content: space-between;

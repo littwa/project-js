@@ -57,6 +57,10 @@
   line-height: 45px;
   display: none;
   color: #ffffff;
+  padding-left: 3px;
+}
+.logo-icon-film_modern {
+  vertical-align: -1px;
 }
 
 .header-nav-list {
@@ -107,6 +111,11 @@
   font-family: 'Roboto';
   color: rgb(255, 8, 37);
   line-height: 1.333;
+}
+#icon-heart_modern {
+  width: 10px;
+  height: 10px;
+  /* background: url(../../images/icons/favorite-heart-button.svg); */
 }
 
 /* MEDIA */
