@@ -47,7 +47,7 @@ let renderAPI = {
 
   infoAllFilm(dataFilms = 1, subPageNav = 1) {
     this.dataFilmsFlag = dataFilms;
-    console.log(this.dataFilmsFlag);
+    // console.log(this.dataFilmsFlag);
     refs.warning.style.display = 'none';
 
     //Для рендера стартовой(1) страницы и клику по номеру пагинации(компоненту навигации):
@@ -90,7 +90,7 @@ let renderAPI = {
     }
     ///Для рендера  страницы с localStorage:( ДОПИСАТЬ НА КОЛИЧЕСТВО РЕНДЕРА)
     if (Array.isArray(dataFilms)) {
-      console.log('dataFilmsFlag', this.dataFilmsFlag);
+      // console.log('dataFilmsFlag', this.dataFilmsFlag);
 
       this.totalPage = Math.ceil(
         dataFilms.length / this.amountFilmDeviceNumber,
@@ -108,7 +108,7 @@ let renderAPI = {
       //     this.amountFilmDeviceNumber * subPageNav - 1,
       //   );
       // }
-      console.log('dataFilms:', dataFilms);
+      // console.log('dataFilms:', dataFilms);
 
       this.renderedFilmsOnPage = dataFilms;
       this.createCardsFilm(dataFilms);
@@ -140,7 +140,6 @@ let renderAPI = {
   },
 
   callbackOpenDetail(e) {
-    console.dir('cl', e.target);
     let idClickFilmToNum = Number(e.target.dataset.id);
     this.clickedPageObject = this.renderedFilmsOnPage.find(
       f => f.id === idClickFilmToNum,

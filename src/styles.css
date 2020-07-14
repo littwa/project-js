@@ -28,7 +28,23 @@ body {
   width: 280px;
   margin: 0 auto;
 }
+/* Футер всегда внизу | Футер всегда внизу |Футер всегда внизу  */
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.main-section {
+  flex: 1 0 auto;
+}
 
+.footer-wraper {
+  flex-shrink: 0;
+}
+/* Футер всегда внизу | Футер всегда внизу |Футер всегда внизу  */
 @media (min-width: 768px) {
   .container {
     width: 620px;
