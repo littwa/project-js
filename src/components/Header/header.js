@@ -1,6 +1,4 @@
-
 import './header.css';
-
 
 import { renderAPI, containerFilms } from '../Main/Main.js';
 

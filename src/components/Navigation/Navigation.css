@@ -1,6 +1,6 @@
 .nav_pagin {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 10px;
   border: 0;
   border-radius: 5px;
@@ -8,8 +8,8 @@
   cursor: pointer;
 }
 .nav_pagin-act {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 3px;
   border: 0;
   border-radius: 5px;
@@ -17,8 +17,8 @@
   cursor: pointer;
 }
 .nav_pagin_arrow-left {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 3px;
   border: 0;
   border-radius: 5px;
@@ -29,8 +29,8 @@
 }
 
 .nav_pagin_arrow-right {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 3px;
   border: 0;
   border-radius: 4px;
