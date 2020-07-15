@@ -4,7 +4,7 @@ import { renderAPI } from '../Main/Main.js';
 
 export function addFunctionLocalStor() {
   let apiObj = renderAPI.clickedPageObject;
-  console.log(apiObj);
+
   let addToWatch = document.querySelector('.add_to_watched');
   let addToQueue = document.querySelector('.add_to_queue');
 
@@ -60,9 +60,8 @@ export function addFunctionLocalStor() {
   };
 
   //добавление события на кнопку add to watched
-  // console.log(addToWatch, addToQueue);
+
   addToWatch.addEventListener('click', e => {
-    console.log('12121212');
     if (!addToWatch.classList.contains('is_active')) {
       addToWatch.classList.add('is_active');
       if (checkupLocalStorage(apiObj, 'watched') === true) {

@@ -21,11 +21,19 @@ Handlebars.registerHelper('loud', function (date) {
   }
 });
 
+// Handlebars.registerHelper('genres', function (genresId) {
+//   return arrGenres.reduce((ac, el) => {
+//     el.id !== genresId ? genresId : (ac = el.name + ',');
+//     return ac;
+//   }, '');
+// });
+
 Handlebars.registerHelper('genres', function (genresId) {
-  return arrGenres.reduce((ac, el) => {
-    el.id === genresId ? (ac = el.name + ',') : genresId;
-    return ac;
-  }, '');
+  return arrGenres
+    .filter(el => {
+      return genresId.find(ell => ell === el.id);
+    })
+    .map(elll => ' ' + elll.name);
 });
 
 //fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api fetch api
@@ -33,27 +41,30 @@ Handlebars.registerHelper('genres', function (genresId) {
 let renderAPI = {
   baseUrlForImg: 'http://image.tmdb.org/t/p/',
   baseUrl: 'https://api.themoviedb.org/3/',
-  allFilms: 'discover/',
+  allFilms: 'discover/movie',
   searchMovie: 'search/movie',
   backdropSizes: ['w300', 'w780', 'w1280', 'original'],
   apiKey: '?api_key=62d44aec954e70e62cd2b71881d93db4',
   amountFilmDeviceNumber: amountFilimDevice(),
   renderedFilmsOnPage: [],
   clickedPageObject: {},
-  dataFilmsFlag: 1,
+
+  dataFilmsFlagQ: [],
   activePage: 1,
   totalPage: 1,
   idList: 1,
 
   infoAllFilm(dataFilms = 1, subPageNav = 1) {
-    this.dataFilmsFlag = dataFilms;
-    // console.log(this.dataFilmsFlag);
     refs.warning.style.display = 'none';
+
+    if (!Array.isArray(dataFilms)) {
+      this.dataFilmsFlagQ = dataFilms;
+    }
 
     //Для рендера стартовой(1) страницы и клику по номеру пагинации(компоненту навигации):
     if (Number.isInteger(dataFilms)) {
       fetch(
-        `${this.baseUrl}${this.allFilms}movie${this.apiKey}&page=${
+        `${this.baseUrl}${this.allFilms}${this.apiKey}&page=${
           subPageNav !== 1 ? subPageNav : dataFilms
         }`,
       )
@@ -88,27 +99,44 @@ let renderAPI = {
         })
         .catch(error => console.error(error));
     }
-    ///Для рендера  страницы с localStorage:( ДОПИСАТЬ НА КОЛИЧЕСТВО РЕНДЕРА)
+    ///Для рендера  страницы с localStorage:
     if (Array.isArray(dataFilms)) {
-      // console.log('dataFilmsFlag', this.dataFilmsFlag);
-
+      if (
+        this.dataFilmsFlagQ.length < dataFilms.length ||
+        typeof this.dataFilmsFlagQ === 'string' ||
+        this.dataFilmsFlagQ === 1
+      ) {
+        this.dataFilmsFlagQ = [...dataFilms];
+      }
+      console.log(this.dataFilmsFlagQ);
       this.totalPage = Math.ceil(
-        dataFilms.length / this.amountFilmDeviceNumber,
+        this.dataFilmsFlagQ.length / this.amountFilmDeviceNumber,
       );
+
       if (subPageNav === 1 && dataFilms.length >= this.amountFilmDeviceNumber) {
         dataFilms.length = this.amountFilmDeviceNumber;
       }
 
-      // if (
-      //   subPageNav > 1 &&
-      //   this.dataFilmsFlag.length >= this.amountFilmDeviceNumber * subPageNav
-      // ) {
-      //   dataFilms = this.dataFilmsFlag.slice(
-      //     this.amountFilmDeviceNumber * (subPageNav - 1) - 1,
-      //     this.amountFilmDeviceNumber * subPageNav - 1,
-      //   );
-      // }
-      // console.log('dataFilms:', dataFilms);
+      if (
+        subPageNav > 1 &&
+        this.dataFilmsFlagQ.length >= this.amountFilmDeviceNumber * subPageNav
+      ) {
+        dataFilms = this.dataFilmsFlagQ.slice(
+          this.amountFilmDeviceNumber * (subPageNav - 1) - 1,
+          this.amountFilmDeviceNumber * subPageNav - 1,
+        );
+      }
+      if (
+        subPageNav > 1 &&
+        this.dataFilmsFlagQ.length < this.amountFilmDeviceNumber * subPageNav
+      ) {
+        dataFilms = this.dataFilmsFlagQ.slice(
+          this.amountFilmDeviceNumber * (subPageNav - 1) - 1,
+          this.amountFilmDeviceNumber * (subPageNav - 1) -
+            1 +
+            (this.dataFilmsFlagQ.length % this.amountFilmDeviceNumber),
+        );
+      }
 
       this.renderedFilmsOnPage = dataFilms;
       this.createCardsFilm(dataFilms);
@@ -134,9 +162,25 @@ let renderAPI = {
         : el.src;
     });
 
-    // const datawatched = JSON.parse(localStorage.getItem('watched'));
-    // const dataqueue = JSON.parse(localStorage.getItem('queue'));
-    // let arrLocalStor = [...datawatched, ...dataqueue];
+    const datawatched = JSON.parse(localStorage.getItem('watched'));
+    const dataqueue = JSON.parse(localStorage.getItem('queue'));
+    let arrLocalStor = [...datawatched, ...dataqueue];
+
+    let arrChild = Array.from(containerFilms.children);
+
+    function intersect(children, arrLocalStor) {
+      return children.filter(child => {
+        return arrLocalStor.find(
+          el => el.id === Number(child.firstElementChild.dataset.id),
+        );
+      });
+    }
+
+    intersect(arrChild, arrLocalStor).forEach(el => {
+      el.querySelector('.main_hidevoteaverage').classList.remove(
+        'main_hidevoteaverage',
+      );
+    });
   },
 
   callbackOpenDetail(e) {

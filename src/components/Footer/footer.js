@@ -9,7 +9,7 @@ const containerMain = document.querySelector('.main-section');
 
 contactLink.addEventListener('click', openContacts);
 
-function openContacts() {
+export function openContacts() {
   containerFilms.innerHTML = '';
   containerPag.innerHTML = '';
 

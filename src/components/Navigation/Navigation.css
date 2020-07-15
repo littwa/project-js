@@ -39,3 +39,11 @@
   background-size: cover;
   cursor: pointer;
 }
+.nav_span {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #ffffff;
+}

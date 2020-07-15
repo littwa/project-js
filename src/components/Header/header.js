@@ -2,7 +2,7 @@ import './header.css';
 
 import { renderAPI, containerFilms } from '../Main/Main.js';
 
-import { pagination, containerPag } from '../Navigation/Navigation.js';
+import { containerPag } from '../Navigation/Navigation.js';
 let _ = require('lodash');
 
 const refs = {
@@ -17,7 +17,6 @@ const refs = {
 
 refs.inputValue.addEventListener('input', _.debounce(cbSearch, 600));
 function cbSearch(e) {
-  // console.log(e.target.value);
   containerPag.innerHTML = '';
   renderAPI.activePage = 1;
 
@@ -29,6 +28,9 @@ function cbSearch(e) {
 document.addEventListener('DOMContentLoaded', homeHoverActive);
 refs.library.addEventListener('click', showLibrary);
 refs.home.addEventListener('click', showHomePage);
+document
+  .querySelector('.header-logo-text')
+  .addEventListener('click', showHomePage);
 
 function homeHoverActive() {
   refs.home.classList.add('hover');
@@ -48,6 +50,10 @@ export function showLibrary() {
   headerButtonsBlock.style.display = 'flex';
   containerFilms.innerHTML = '';
   containerPag.innerHTML = '';
+  document
+    .querySelector('.header__button_watched')
+    .classList.remove('is_active');
+  document.querySelector('.header__button_queue').classList.remove('is_active');
 }
 
 export function showHomePage() {
@@ -88,16 +94,18 @@ refsLocal.watched.addEventListener('click', e => {
   const str = localStorage.getItem('watched');
   const data = JSON.parse(str);
   renderAPI.activePage = 1;
+  console.log(containerPag);
+  containerFilms.innerHTML = '';
   containerPag.innerHTML = '';
   renderAPI.infoAllFilm(data);
-  renderAPI.dataFilmsFlag = data;
 });
 
 refsLocal.queue.addEventListener('click', e => {
   const str = localStorage.getItem('queue');
   const data = JSON.parse(str);
   renderAPI.activePage = 1;
+  console.log(containerPag);
   containerPag.innerHTML = '';
+  containerFilms.innerHTML = '';
   renderAPI.infoAllFilm(data);
-  renderAPI.dataFilmsFlag = data;
 });
