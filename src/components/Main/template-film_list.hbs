@@ -8,10 +8,15 @@
         <div class="card__content">
             <h3 class="card__title">{{title}}</h2>
             <div class="card__info">
-            <ul class="genre-list">
+            {{!-- <ul class="genre-list">
                 {{#each genre_ids}}
                     <li class="genre-list__item">{{genres this}}</li>
                 {{/each}}
+            </ul> --}}
+            <ul class="genre-list">
+               
+                    <li class="genre-list__item">{{genres genre_ids}}</li>
+               
             </ul>
             <span class="card__year">{{loud release_date}}</span>
             <span class="main_card-vote main_hidevoteaverage">{{vote_average}}</span>

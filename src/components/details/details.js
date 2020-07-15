@@ -10,6 +10,7 @@ import { renderAPI } from '../Main/Main.js';
 import { pagination, containerPag } from '../Navigation/Navigation.js';
 import { showHomePage, showLibrary } from '../Header/header.js';
 import { addFunctionLocalStor } from '../comp_buttons_w_q/buttons_w_q.js';
+import { openContacts } from '../Footer/footer.js';
 
 let _ = require('lodash');
 
@@ -19,11 +20,19 @@ Handlebars.registerHelper('popularityMath', function (property) {
   return shoterNumber;
 });
 
+// Handlebars.registerHelper('genres', function (genresId) {
+//   return arrGenres.reduce((ac, el) => {
+//     el.id === genresId ? (ac = el.name + ',') : genresId;
+//     return ac;
+//   }, '');
+// });
+
 Handlebars.registerHelper('genres', function (genresId) {
-  return arrGenres.reduce((ac, el) => {
-    el.id === genresId ? (ac = el.name + ',') : genresId;
-    return ac;
-  }, '');
+  return arrGenres
+    .filter(el => {
+      return genresId.find(ell => ell === el.id);
+    })
+    .map(elll => ' ' + elll.name);
 });
 
 export function OpenDetailModal(clickedPageObject) {
@@ -74,4 +83,10 @@ export function OpenDetailModal(clickedPageObject) {
     htmlInstance.close();
     homeLinkOnModal.removeEventListener('click', cbShowHomePage);
   }
+  let temm = document.querySelector('#det_team');
+  temm.addEventListener('click', () => {
+    openContacts();
+    htmlInstance.close();
+  });
 }
+//------------------------------------------------------------

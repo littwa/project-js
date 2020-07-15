@@ -1,5 +1,6 @@
 import './Navigation.css';
 import { renderAPI } from '../Main/Main.js';
+import amountFilimDevice from '../Main/AmountFilimDevice.js';
 
 export let containerPag = document.querySelector('.main-pagination-navigatin');
 containerPag.addEventListener('click', cbel);
@@ -9,7 +10,8 @@ function cbel(e) {
     // let numberPageActive = Number(e.target.textContent);
     let numberPageActive = Number(e.target.dataset.numpage);
     (renderAPI.activePage = numberPageActive), (containerPag.innerHTML = '');
-    renderAPI.infoAllFilm(renderAPI.dataFilmsFlag, numberPageActive);
+
+    renderAPI.infoAllFilm(renderAPI.dataFilmsFlagQ, numberPageActive);
   }
 }
 
@@ -19,6 +21,8 @@ export function pagination(activePage, amontPage) {
 
   let activePageNext1 = activePage + 1;
   let activePageNext2 = activePage + 2;
+  let firstPage = 1;
+  let lastPage = amontPage;
 
   let layoutCont = document.createElement('div');
   layoutCont.style.margin = '0 auto';
@@ -42,6 +46,18 @@ export function pagination(activePage, amontPage) {
     );
   }
 
+  if (
+    firstPage !== activePage &&
+    firstPage !== activePagePrevious1 &&
+    firstPage !== activePagePrevious2 &&
+    amountFilimDevice() > 4
+  ) {
+    layoutCont.insertAdjacentHTML(
+      'afterbegin',
+      `<button data-numpage="${firstPage}" class="nav_pagin">${firstPage} </button><span class="nav_span">...</span>`,
+    );
+  }
+
   if (activePageNext1 <= amontPage) {
     layoutCont.insertAdjacentHTML(
       'beforeend',
@@ -59,6 +75,18 @@ export function pagination(activePage, amontPage) {
     layoutCont.insertAdjacentHTML(
       'afterbegin',
       `<button data-numpage="${activePagePrevious1}" class="nav_pagin_arrow-left">.</button>`,
+    );
+  }
+
+  if (
+    lastPage !== activePage &&
+    lastPage !== activePagePrevious1 &&
+    lastPage !== activePagePrevious2 &&
+    amountFilimDevice() > 4
+  ) {
+    layoutCont.insertAdjacentHTML(
+      'beforeend',
+      `<span class="nav_span">...</span><button data-numpage="${lastPage}" class="nav_pagin">${lastPage} </button>`,
     );
   }
 

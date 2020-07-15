@@ -1,9 +1,9 @@
 
 
-    <header class="header-wrapper">
+    <header class="header-wrapper" id="header-wrapper">
      
       <div class="container header">
-        <div class="header-first-line">
+        <div class="header-first-line ">
           <div class="header-logo">
             <a href="#" class="header-logo-link js-logo">
               <img
@@ -51,7 +51,7 @@
 
 <div class="section-box">
     <div class="section-box__details">
-        <div class="details">
+        <div  class="details">
             <div class="details-tablet__version">
                 <img class="details-img" src="https://image.tmdb.org/t/p/w500{{poster_path}}">
             </div>
@@ -98,11 +98,16 @@
 
                     </div>
                     <div class="detail-box__div">
-                        <ul class="detail-box__calculation">{{#each genre_ids }}
+                        {{!-- <ul class="detail-box__calculation">{{#each genre_ids }}
                             <li class="detail-box__div-li">{{genres this}}</li>
                             {{/each}}
 
-                        </ul>
+                        </ul> --}}
+                    <ul class="detail-box__calculation">
+               
+                    <li class="detail-box__div-li">{{genres genre_ids}}</li>
+               
+                    </ul>
 
                     </div>
 
@@ -111,10 +116,10 @@
                 <p class="details-overview">{{overview}}</p>
 
         
-      <div class="add_buttons container">
-      <button class="add_to_watched">ADD TO WATCHED</button>
-      <button class="add_to_queue">ADD TO QUEUE</button>
-    </div>
+                 <div class="add_buttons container">
+                 <button class="add_to_watched">ADD TO WATCHED</button>
+                 <button class="add_to_queue">ADD TO QUEUE</button>
+                 </div>
                 
 
 
@@ -143,7 +148,7 @@
                                     d="M16 30.72l-2.24-2.24c-8.32-7.36-13.76-12.32-13.76-18.4 0-4.96 3.84-8.8 8.8-8.8 2.72 0 5.44 1.28 7.2 3.36 1.76-2.080 4.48-3.36 7.2-3.36 4.96 0 8.8 3.84 8.8 8.8 0 6.080-5.44 11.040-13.76 18.4l-2.24 2.24z">
                                 </path>
                             </svg>
-                            by <a class="footer-contact-link" href="#">GoIT Students</a>
+                            by <a class="footer-contact-link" id="det_team" href="#">GoIT Students</a>
                         </p>
                     </div>
                 </div>
